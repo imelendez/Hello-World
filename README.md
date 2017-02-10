@@ -1,3 +1,3 @@
 Hello-World
 ===========
-This is my firt project. Checking github out. 
+This is my senior project. Checking github out.

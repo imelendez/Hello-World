@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<p><a class="btn btn-default" href="{% url 'food_venue_inspection_employee_list' %}">employee Listing</a></p>
+<table class="table">
+<tr><td>id</td><td>{{ object.id }}</td></tr>
+<tr><td>first_name</td><td>{{ object.first_name }}</td></tr>
+<tr><td>last_name</td><td>{{ object.last_name }}</td></tr>
+<tr><td>email</td><td>{{ object.email }}</td></tr>
+<tr><td>address</td><td>{{ object.address }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit employee</a>
+
+{% endblock %}

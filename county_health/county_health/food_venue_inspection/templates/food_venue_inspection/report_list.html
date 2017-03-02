@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<p><a class="btn btn-default" href="{% url 'food_venue_inspection_report_list' %}">report Listing</a></p>
+<table class="table">
+<tr>
+<td>ID</td><td>Link</td>
+    <td>id</td>
+    <td>time_in</td>
+    <td>time_out</td>
+    <td>purpose_of_inspection</td>
+    <td>COS_violation_count</td>
+</tr>
+{% for object in object_list %}
+<tr>
+    <td>{{object.pk}}</td>
+    <td><a href="{{object.get_absolute_url}}">{{object}}</a></td>
+    <td>{{ object.id }}</td>
+    <td>{{ object.time_in }}</td>
+    <td>{{ object.time_out }}</td>
+    <td>{{ object.purpose_of_inspection }}</td>
+    <td>{{ object.COS_violation_count }}</td>
+</tr>
+{% endfor %}
+</table><a class="btn btn-primary" href="{% url 'food_venue_inspection_report_create' %}">Create new report</a>
+{% endblock %}

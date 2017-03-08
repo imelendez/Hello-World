@@ -1,0 +1,26 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>county health inspection</title>
+    <!-- Latest compiled and minified CSS -->
+        <link href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}"
+          rel="stylesheet" media="screen">
+
+</head>
+<body>
+<h1>Texas County Health Website</h1>
+<p>Health reports provide you the certainty a restaurant you visit is following food preperation and handling requirements</p>
+{% if current_restaurant_list %}
+    <ul>
+    {% for restaurant in current_restaurant_list %}
+        <li><a href="/food_venue_inspection/{{ restaurant.id }}/">{{ restaurant.name }}</a> owner is {{ restaurant.owner }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No restaurants are available.</p>
+{% endif %}
+</body>
+</html>

@@ -20,7 +20,8 @@ class employee(models.Model):
     address = models.TextField(max_length=100)
 
     # Relationship Fields
-    restaurant_id = models.ForeignKey('food_venue_inspection.restaurant', )
+    # REMOVING THE FOLLOWING TEST
+    # restaurant_id = models.ForeignKey('food_venue_inspection.restaurant', )
 
     class Meta:
         ordering = ('-pk',)

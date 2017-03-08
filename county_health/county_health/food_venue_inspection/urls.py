@@ -18,6 +18,7 @@ router.register(r'restaurant_type', api.restaurant_typeViewSet)
 urlpatterns = (
     # urls for Django Rest Framework API
     url(r'^api/v1/', include(router.urls)),
+    url(r'^$', views.index, name='index'),
 )
 
 urlpatterns += (

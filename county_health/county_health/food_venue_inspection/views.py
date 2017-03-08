@@ -1,7 +1,16 @@
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
 from .models import employee, report, inspection_item_status, inspection_item, compliance_status, priority_level, restaurant, restaurant_type
 from .forms import employeeForm, reportForm, inspection_item_statusForm, inspection_itemForm, compliance_statusForm, priority_levelForm, restaurantForm, restaurant_typeForm
+from django.http import HttpResponse
+from django.template import loader
 
+def index(request):
+    current_restaurant_list = restaurant.objects.order_by('-name')[:5]
+    template = loader.get_template('food_venue_inspection/index.html')
+    context = {
+        'current_restaurant_list': current_restaurant_list,
+    }
+    return HttpResponse(template.render(context, request))
 
 class employeeListView(ListView):
     model = employee

@@ -5,7 +5,7 @@ from .models import employee, report, inspection_item_status, inspection_item, c
 class employeeForm(forms.ModelForm):
     class Meta:
         model = employee
-        fields = ['id', 'first_name', 'last_name', 'email', 'address', 'restaurant_id']
+        fields = ['id', 'first_name', 'last_name', 'email', 'address']
 
 
 class reportForm(forms.ModelForm):

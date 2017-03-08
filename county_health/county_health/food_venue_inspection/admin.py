@@ -2,6 +2,7 @@ from django.contrib import admin
 from django import forms
 from .models import employee, report, inspection_item_status, inspection_item, compliance_status, priority_level, restaurant, restaurant_type
 
+
 class employeeAdminForm(forms.ModelForm):
 
     class Meta:

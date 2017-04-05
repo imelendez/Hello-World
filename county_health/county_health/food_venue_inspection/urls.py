@@ -24,7 +24,7 @@ urlpatterns = (
 urlpatterns += (
     # urls for employee
     url(r'^food_venue_inspection/employee/$', views.employeeListView.as_view(), name='food_venue_inspection_employee_list'),
-    url(r'^food_venue_inspection/employee/create/$', views.employeeCreateView.as_view(), name='food_venue_inspection_employee_create'),
+    # url(r'^food_venue_inspection/employee/create/$', views.employeeCreateView.as_view(), name='food_venue_inspection_employee_create'),
     url(r'^food_venue_inspection/employee/detail/(?P<pk>\S+)/$', views.employeeDetailView.as_view(), name='food_venue_inspection_employee_detail'),
     url(r'^food_venue_inspection/employee/update/(?P<pk>\S+)/$', views.employeeUpdateView.as_view(), name='food_venue_inspection_employee_update'),
 )

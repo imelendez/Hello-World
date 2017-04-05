@@ -13,7 +13,7 @@ class employeeAdminForm(forms.ModelForm):
 class employeeAdmin(admin.ModelAdmin):
     form = employeeAdminForm
     list_display = ['id', 'first_name', 'last_name', 'email', 'address']
-    readonly_fields = ['id', 'first_name', 'last_name', 'email', 'address']
+    # readonly_fields = ['id', 'first_name', 'last_name', 'email', 'address']
 
 admin.site.register(employee, employeeAdmin)
 
@@ -28,7 +28,7 @@ class reportAdminForm(forms.ModelForm):
 class reportAdmin(admin.ModelAdmin):
     form = reportAdminForm
     list_display = ['id', 'time_in', 'time_out', 'purpose_of_inspection', 'COS_violation_count']
-    readonly_fields = ['id', 'time_in', 'time_out', 'purpose_of_inspection', 'COS_violation_count']
+    # readonly_fields = ['id', 'time_in', 'time_out', 'purpose_of_inspection', 'COS_violation_count']
 
 admin.site.register(report, reportAdmin)
 
@@ -43,7 +43,7 @@ class inspection_item_statusAdminForm(forms.ModelForm):
 class inspection_item_statusAdmin(admin.ModelAdmin):
     form = inspection_item_statusAdminForm
     list_display = ['id']
-    readonly_fields = ['id']
+    # readonly_fields = ['id']
 
 admin.site.register(inspection_item_status, inspection_item_statusAdmin)
 
@@ -58,7 +58,7 @@ class inspection_itemAdminForm(forms.ModelForm):
 class inspection_itemAdmin(admin.ModelAdmin):
     form = inspection_itemAdminForm
     list_display = ['id', 'subhead', 'description']
-    readonly_fields = ['id', 'subhead', 'description']
+    # readonly_fields = ['id', 'subhead', 'description']
 
 admin.site.register(inspection_item, inspection_itemAdmin)
 
@@ -73,7 +73,7 @@ class compliance_statusAdminForm(forms.ModelForm):
 class compliance_statusAdmin(admin.ModelAdmin):
     form = compliance_statusAdminForm
     list_display = ['id', 'code', 'spelled_out_compstatus']
-    readonly_fields = ['id', 'code', 'spelled_out_compstatus']
+    # readonly_fields = ['id', 'code', 'spelled_out_compstatus']
 
 admin.site.register(compliance_status, compliance_statusAdmin)
 
@@ -88,7 +88,7 @@ class priority_levelAdminForm(forms.ModelForm):
 class priority_levelAdmin(admin.ModelAdmin):
     form = priority_levelAdminForm
     list_display = ['name', 'id', 'level_points']
-    readonly_fields = ['name', 'id', 'level_points']
+    # readonly_fields = ['name', 'id', 'level_points']
 
 admin.site.register(priority_level, priority_levelAdmin)
 
@@ -103,7 +103,7 @@ class restaurantAdminForm(forms.ModelForm):
 class restaurantAdmin(admin.ModelAdmin):
     form = restaurantAdminForm
     list_display = ['id', 'name', 'owner', 'license_permit']
-    readonly_fields = ['id', 'name', 'owner', 'license_permit']
+    # readonly_fields = ['id', 'name', 'owner', 'license_permit']
 
 admin.site.register(restaurant, restaurantAdmin)
 
@@ -118,7 +118,7 @@ class restaurant_typeAdminForm(forms.ModelForm):
 class restaurant_typeAdmin(admin.ModelAdmin):
     form = restaurant_typeAdminForm
     list_display = ['type']
-    readonly_fields = ['type']
+    # readonly_fields = ['type']
 
 admin.site.register(restaurant_type, restaurant_typeAdmin)
 

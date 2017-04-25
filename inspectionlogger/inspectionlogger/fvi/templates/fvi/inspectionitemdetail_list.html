@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<p><a class="btn btn-default" href="{% url 'fvi_inspectionitemdetail_list' %}">inspectionItemDetail Listing</a></p>
+<table class="table">
+<tr>
+<td>ID</td><td>Link</td>
+    <td>subhead</td>
+    <td>description</td>
+    <td>id</td>
+</tr>
+{% for object in object_list %}
+<tr>
+    <td>{{object.pk}}</td>
+    <td><a href="{{object.get_absolute_url}}">{{object}}</a></td>
+    <td>{{ object.subhead }}</td>
+    <td>{{ object.description }}</td>
+    <td>{{ object.id }}</td>
+</tr>
+{% endfor %}
+</table><a class="btn btn-primary" href="{% url 'fvi_inspectionitemdetail_create' %}">Create new inspectionItemDetail</a>
+{% endblock %}

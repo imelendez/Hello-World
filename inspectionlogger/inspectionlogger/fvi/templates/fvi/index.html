@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="container">
+<div class="jumbotron">
+<h1>ABOUT</h1> <a href="/fvi/fvi/restaurant" type="button" class="btn btn-primary">Restaurants</a>
+<br>
+    <p><b>Food Safety:</b> <br>
+Regularly inspects restaurants and food service businesses to ensure food is prepared in safe, hygienic, properly equipped and well-maintained facilities.</p>
+    <img src="{% static '/eat.png' %}" alt="food">
+    <p><b>Restaurant Inspections</b><br>
+We inspect over 300 restaurants and foodservice facilities every year, which benefits everyone in the region every single day. Our specialists educate employees and consumers about safe food handling procedures including proper temperatures for cooking, serving and refrigeration.
+Diseases can be transmitted in packaged goods, in meat, on produce and through improper food handling, preparation and storage.
+Consumer food safety education is also important since the majority of foodborne illnesses can be traced to improper food handling procedures in home kitchens.
+Citizens can request an inspection report for specific restaurants in our Office.</p>
+    <form action="/fvi/results/" method="GET">
+          <div class="form-group">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="OK">
+          </div>
+            </form>
+    {% if current_restaurant_list %}
+    <ul>
+    {% for restaurant in current_restaurant_list %}
+        <li><a href="/food_venue_inspection/{{ restaurant.id }}/">{{ restaurant.name }}</a> owner is {{ restaurant.owner }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No restaurants are available.</p>
+{% endif %}
+</div>
+</div>
+{% endblock %}

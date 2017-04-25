@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<p><a class="btn btn-default" href="{% url 'fvi_restaurant_list' %}">restaurant Listing</a></p>
+<table class="table">
+<tr><td>id</td><td>{{ object.id }}</td></tr>
+<tr><td>name</td><td>{{ object.name }}</td></tr>
+<tr><td>address</td><td>{{ object.address }}</td></tr>
+<tr><td>owner</td><td>{{ object.owner }}</td></tr>
+<tr><td>licensePermit</td><td>{{ object.licensePermit }}</td></tr>
+<tr><td>restaurantType</td><td>{{ object.restaurantType }}</td></tr>
+<tr><td>riskType</td><td>{{ object.riskType }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit restaurant</a>
+
+{% endblock %}

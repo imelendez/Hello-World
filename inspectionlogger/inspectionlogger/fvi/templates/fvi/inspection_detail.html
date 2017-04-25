@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<p><a class="btn btn-default" href="{% url 'fvi_inspection_list' %}">inspection Listing</a></p>
+<table class="table">
+<tr><td>id</td><td>{{ object.id }}</td></tr>
+<tr><td>timeIn</td><td>{{ object.timeIn }}</td></tr>
+<tr><td>timeOut</td><td>{{ object.timeOut }}</td></tr>
+<tr><td>purposeOfInspection</td><td>{{ object.purposeOfInspection }}</td></tr>
+</table>
+<a class="btn btn-primary" href="{{object.get_update_url}}">Edit inspection</a>
+
+{% endblock %}

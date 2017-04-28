@@ -8,6 +8,13 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth import models as auth_models
 from django.db import models as models
 from django_extensions.db import fields as extension_fields
+from django.db.models import Count, Min, Sum, Avg
+
+
+class inspectionManager(models.Manager):
+    def inspection_total(self):
+        print("here")
+        return self.objects.annotate(Count('inspectionitemstatus'))
 
 
 class inspection(models.Model):
@@ -31,6 +38,7 @@ class inspection(models.Model):
     class Meta:
         ordering = ('-pk',)
 
+    objects = inspectionManager()
     # def __unicode__(self):
     #     return u'%s' % self.pk
     def __str__(self):
@@ -38,7 +46,6 @@ class inspection(models.Model):
 
     def get_absolute_url(self):
         return reverse('fvi_inspection_detail', args=(self.pk,))
-
 
     def get_update_url(self):
         return reverse('fvi_inspection_update', args=(self.pk,))
@@ -155,7 +162,6 @@ class restaurant(models.Model):
 
     def get_absolute_url(self):
         return reverse('fvi_restaurant_detail', args=(self.pk,))
-
 
     def get_update_url(self):
         return reverse('fvi_restaurant_update', args=(self.pk,))

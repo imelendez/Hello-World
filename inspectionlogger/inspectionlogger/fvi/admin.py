@@ -12,7 +12,7 @@ class inspectionAdminForm(forms.ModelForm):
 class inspectionAdmin(admin.ModelAdmin):
     form = inspectionAdminForm
     list_display = ['id', 'timeIn', 'timeOut', 'purposeOfInspection']
-    readonly_fields = ['id']
+    #readonly_fields = ['id']
     # readonly_fields = ['id'], 'timeIn', 'timeOut', 'purposeOfInspection']
 
 admin.site.register(inspection, inspectionAdmin)
@@ -27,7 +27,7 @@ class inspectionItemStatusAdminForm(forms.ModelForm):
 
 class inspectionItemStatusAdmin(admin.ModelAdmin):
     form = inspectionItemStatusAdminForm
-    list_display = ['id', 'complianceStatus']
+    list_display = ['id', 'complianceStatus', 'inspectionId']
     readonly_fields = ['id']
     # readonly_fields = ['id', 'complianceStatus']
 

@@ -5,9 +5,10 @@
 <table class="table">
 <tr>
 <td>Link</td>
-    <td>name</td>
-    <td>address</td>
-    <td>restaurantType</td>
+    <td>Name</td>
+    <td>Address</td>
+    <td>RiskType</td>
+{#    <td>restaurantType</td>#}
     <td>riskType</td>
 </tr>
 {% for object in object_list %}
@@ -15,8 +16,12 @@
     <td><a href="{{object.get_absolute_url}}">{{object}}</a></td>
     <td>{{ object.name }}</td>
     <td>{{ object.address }}</td>
-    <td>{{ object.restaurantType }}</td>
+    <td>{{ object.get_riskType }}</td>
+{#    <td>{{ object.restaurantType }}</td>#}
     <td>{{ object.riskType }}</td>
+{#    <td>{{ inspection.objects.annotate(Count('inspectionItemStatus'))}}</td>//CustomField#}
+    {{ object }}
+
 </tr>
 {% endfor %}
 </table><a class="btn btn-primary" href="{% url 'fvi_restaurant_create' %}">Create new restaurant</a>

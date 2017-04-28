@@ -11,10 +11,17 @@ You are : <strong>{{ subject }}</strong>
 You are : <strong>{{ meh }}</strong>
 You are : <strong>{{ searchQuery }}</strong>
 
-{#{% for restaurant in restaurants %}#}
-{#    {{ restaurant }}#}
-{#{% endfor %}#}
-
+uno
 {{ restaurants }}
+dos
+{% for restaurant in restaurants %}
+    <p>{{ restaurant }} {{ restaurant.complianceStatus }}</p>
+{% endfor %}
+tres
+{{ totalMarks }}
+cuatro
+{{ totalmarks }}
+cinco
+{{ totalwithinspectionaggregation }}
 </body>
 </html>

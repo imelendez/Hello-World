@@ -32,4 +32,4 @@ class restaurantForm(forms.ModelForm):
 
 
 class searchForm(forms.Form):
-    searchQuery = forms.CharField(max_length=100, initial='searchQuery')
+    searchQuery = forms.CharField(max_length=100, initial='search')

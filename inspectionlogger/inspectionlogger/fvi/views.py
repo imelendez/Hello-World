@@ -12,41 +12,54 @@ from django.utils import timezone
 from django.http import HttpResponseRedirect
 import operator
 
-# def results(request):
-#     if request.method == 'GET':
-#         if request.GET.get('searchQuery'):
-#             message = 'You submitted: %r' % request.GET['searchQuery']
-#         else:
-#             message = 'You submitted nothing!'
-#         return HttpResponse(message)
 def results(request):
-    if restaurant.objects.filter(name__icontains='Mar'):
+    if request.method == 'GET':
+        if request.GET.get('searchQuery'):
+            query = '%s' % request.GET['searchQuery']
+        else:
+            query = 'You submitted nothing!'
+        print(query)
+    if restaurant.objects.filter(name__icontains=query): #using icontain field lookup to return case insensitive query result
         print("There is at least one Entry with the headline Test")
-    restaurants = restaurant.objects.get(name__icontains='Mar') #resturn restaurant with matching name
-    assert isinstance(restaurants.id, object)
-    restaurantId=restaurants.id
-    print (restaurantId)
-    restaurants2=inspection.objects.filter(restaurantId=restaurantId)
-    currentInspection=restaurants2[0]#return restaurant latest inspection
-    print("HERENOW")
-    print(currentInspection)
-    print(currentInspection)
-    print(currentInspection.id)
-    assert isinstance(currentInspection.id, object)
-    currentInspectionID = currentInspection.id
-    print(currentInspectionID)
-    inspections= inspectionItemStatus.objects.filter(inspectionId=currentInspectionID)#Inspections with currentID
-    realTotalMarks=inspectionItemStatus.objects.filter(inspectionId=currentInspectionID).aggregate(totalMarks=Sum('complianceStatus'))
-    # testTotalMarksFromInspection=currentInspection.objects.aggregate(totalMarks=Sum('inspectionitemstatus__inspectionitemdetails__prioritylevel__levelpoints'))
-    # testTotalMarksFromInspection=inspection.objects.filter(restaurantId=restaurantId).aggregate(totalMarks=Sum('inspectionitemstatus__complianceStatus'))
-    testTotalMarksFromInspection=inspectionItemStatus.objects.filter(inspectionId=currentInspectionID).aggregate(totalMarks=Sum('itemDetailsId__priorityLevelId__levelPoints'))
-    #^^^THIS RETURNS MARKS FOR SPECIFIED INSPECTION RECORD WITH RESTAURANT ID. CHECKMATE
-    #  testTotalMarksFromInspection=inspectionItemStatus.objects.filter(inspectionId=currentInspectionID).aggregate(totalMarks=Sum('itemDetailsId_id__priorityLevel__levelPoints'))
-    # inspections.objects.all().aggregate(totaldemerits=Sum(('complianceStatus'),output_field=FloatField()))
-    # print (inspections)
-    print("There is at least one Entry with the headline Testgagagasgjaslkdfjaklsdjfklasjdf")
-    return render(request, 'results.html', {'restaurants': inspections, 'totalmarks': realTotalMarks, 'totalwithinspectionaggregation':testTotalMarksFromInspection})
+    restaurants = restaurant.objects.filter(name__icontains=query) #resturn restaurant with matching name
+    resCount=restaurants.count()
+    print (resCount)
+    # assert isinstance(restaurants.id, object)
+    # restaurantId=restaurants.id
+    # print (restaurantId)
+    # restaurants2=inspection.objects.filter(restaurantId=restaurantId)
+    # currentInspection=restaurants2[0]#return restaurant latest inspection
+    # print("HERENOW")
+    # print(currentInspection)
+    return render(request, 'results.html', {'restaurant_list': restaurants, "searchQuery":query, "restaurantCount":resCount})
 
+# def viewRestaurantScore(request)
+#     if restaurant.objects.filter(name__icontains='Mar'):
+#         print("There is at least one Entry with the headline Test")
+#     restaurants = restaurant.objects.get(name__icontains='Mar') #resturn restaurant with matching name
+#     assert isinstance(restaurants.id, object)
+#     restaurantId=restaurants.id
+#     print (restaurantId)
+#     restaurants2=inspection.objects.filter(restaurantId=restaurantId)
+#     currentInspection=restaurants2[0]#return restaurant latest inspection
+#     print("HERENOW")
+#     print(currentInspection)
+#     print(currentInspection)
+#     print(currentInspection.id)
+#     assert isinstance(currentInspection.id, object)
+#     currentInspectionID = currentInspection.id
+#     print(currentInspectionID)
+#     inspections= inspectionItemStatus.objects.filter(inspectionId=currentInspectionID)#Inspections with currentID
+#     realTotalMarks=inspectionItemStatus.objects.filter(inspectionId=currentInspectionID).aggregate(totalMarks=Sum('complianceStatus'))
+#     # testTotalMarksFromInspection=currentInspection.objects.aggregate(totalMarks=Sum('inspectionitemstatus__inspectionitemdetails__prioritylevel__levelpoints'))
+#     # testTotalMarksFromInspection=inspection.objects.filter(restaurantId=restaurantId).aggregate(totalMarks=Sum('inspectionitemstatus__complianceStatus'))
+#     testTotalMarksFromInspection=inspectionItemStatus.objects.filter(inspectionId=currentInspectionID).aggregate(totalMarks=Sum('itemDetailsId__priorityLevelId__levelPoints'))
+#     #^^^THIS RETURNS MARKS FOR SPECIFIED INSPECTION RECORD WITH RESTAURANT ID. CHECKMATE
+#     #  testTotalMarksFromInspection=inspectionItemStatus.objects.filter(inspectionId=currentInspectionID).aggregate(totalMarks=Sum('itemDetailsId_id__priorityLevel__levelPoints'))
+#     # inspections.objects.all().aggregate(totaldemerits=Sum(('complianceStatus'),output_field=FloatField()))
+#     # print (inspections)
+#     print("There is at least one Entry with the headline Testgagagasgjaslkdfjaklsdjfklasjdf")
+#     return render(request, 'results.html', {'restaurants': inspections, 'totalmarks': realTotalMarks, 'totalwithinspectionaggregation':testTotalMarksFromInspection})
 def index(request):
     current_restaurant_list = restaurant.objects.order_by('-name')[:5]
     template = loader.get_template('fvi/index.html')

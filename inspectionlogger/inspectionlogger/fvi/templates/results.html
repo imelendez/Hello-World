@@ -1,27 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Results Page</title>
-</head>
-<body>
-<h1>Welcome to Search Results</h1>
-You are : <strong>{{ mySearchQuery }}</strong>
-You are : <strong>{{ subject }}</strong>
-You are : <strong>{{ meh }}</strong>
-You are : <strong>{{ searchQuery }}</strong>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
 
-uno
-{{ restaurants }}
-dos
-{% for restaurant in restaurants %}
-    <p>{{ restaurant }} {{ restaurant.complianceStatus }}</p>
-{% endfor %}
-tres
-{{ totalMarks }}
-cuatro
-{{ totalmarks }}
-cinco
-{{ totalwithinspectionaggregation }}
-</body>
-</html>
+<h1>Search Results for '{{ searchQuery }}'</h1>
+{% if restaurant_list %}
+    <ul>
+    {% for restaurant in restaurant_list %}
+        <li><a href="{{restaurant.get_absolute_url}}">{{ restaurant }}</a></li>
+        <table class="table table-inverse">
+    <tr><td>Name</td><td>{{ restaurant.name }}</td></tr>
+    <tr><td>Address</td><td>{{ restaurant.address }}</td></tr>
+    <tr><td>Owner</td><td>{{ restaurant.owner }}</td></tr>
+    <tr><td>license Permit</td><td>{{ restaurant.licensePermit }}</td></tr>
+    <tr><td>Restaurant Type</td><td>{{ restaurant.restaurantType }}</td></tr>
+    <tr><td>Risk Type</td><td>{{ restaurant.riskType }}</td></tr>
+    </table>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No restaurants with those letters available.</p>
+{% endif %}
+{% endblock %}

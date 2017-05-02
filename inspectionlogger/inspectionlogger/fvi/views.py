@@ -3,6 +3,7 @@ from .models import inspection, inspectionItemStatus, inspectionItemDetail, prio
 from .forms import searchForm, inspectionForm, inspectionItemStatusForm, inspectionItemDetailForm, priorityLevelForm, restaurantForm
 from django.http import HttpResponse
 from django.template import loader
+from django.shortcuts import get_object_or_404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
@@ -138,11 +139,44 @@ class restaurantListView(ListView):
     context_object_name = 'restaurants'  # Default: object_list
     paginate_by = 3
     queryset = restaurant.objects.all()  # Default: Model.objects.all()
+
 class restaurantCreateView(CreateView):
     model = restaurant
     form_class = restaurantForm
 class restaurantDetailView(DetailView):
     model = restaurant
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(restaurantDetailView, self).get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        print(super(restaurantDetailView, self).get_context_data(**kwargs))
+        print("object attempt next")
+        print(self.get_object())
+        selfNOW=self.get_object()
+        print(selfNOW.address)
+        print(selfNOW.id)
+        context['inspection_list'] = inspection.objects.all()
+        insobjs=inspection.objects.all()
+        searchResultObj=insobjs.filter(restaurantId=selfNOW.id)
+        context['inspectionObjects_list'] = searchResultObj
+        print("searchresultsis>>>>")
+        print(searchResultObj)
+        print("or")
+        print(context['inspectionObjects_list'])
+        print("CONTEXT HERE")
+        print(context)
+        return context
+
+# class PublisherBookList(ListView):
+#     template_name = 'fvi/restaurant_inspections_list.html'
+#     print("selfargs")
+
+    # def get_queryset(self):
+    #     self.Restaurant = get_object_or_404(restaurant, id=self.args[0]
+    #     print(self.args[0]))
+    #     return restaurant.objects.filter(Restaurant=self.Restaurant)
+
 class restaurantUpdateView(UpdateView):
     model = restaurant
     form_class = restaurantForm

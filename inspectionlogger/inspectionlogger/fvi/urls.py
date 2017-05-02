@@ -63,5 +63,6 @@ urlpatterns += (
     url(r'^fvi/restaurant/create/$', views.restaurantCreateView.as_view(), name='fvi_restaurant_create'),
     url(r'^fvi/restaurant/detail/(?P<pk>\S+)/$', views.restaurantDetailView.as_view(), name='fvi_restaurant_detail'),
     url(r'^fvi/restaurant/update/(?P<pk>\S+)/$', views.restaurantUpdateView.as_view(), name='fvi_restaurant_update'),
+    # url(r'^fvi/restaurant/inspections/(?P<pk>\S+)/$', views.PublisherBookList.as_view(), name='fvi_publisherbook_list')
 )
 

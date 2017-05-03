@@ -11,31 +11,48 @@
 <tr><td>RestaurantType</td><td>{{ object.restaurantType }}</td></tr>
 {#<tr><td>riskType</td><td>{{ object.riskType }}</td></tr>#}
 </table>
-{#    {{ object }}#}
-{#    {{ object.inspection_list }}#}
-    {{ inspection_list }}
-    gaga
-{#<a class="btn btn-primary" href="{{object.get_update_url}}">Edit restaurant</a>#}
-{{ inspectionObjects_list }}
 
-    yasssaiosjdfoajs;dfjaksjdfjaskldfjkalsdfkajsdfj;asjkdlf
 {% if inspectionObjects_list %}
-        <p>YAAS</p>
+    <h1>Most Recent Inspections</h1>
+    <p>Inpections</p>
     <ul>
-    {% for restaurant in inspectionObjects_list %}
-        <li><a href="{{restaurant.get_absolute_url}}">{{ restaurant }}</a></li>
+    {% for inspection in inspectionObjects_list %}
         <table class="table table-inverse">
-    <tr><td>Name</td><td>{{ restaurant.purposeOfInspection }}</td></tr>
-    <tr><td>Address</td><td>{{ restaurant.address }}</td></tr>
-    <tr><td>Owner</td><td>{{ restaurant.owner }}</td></tr>
-    <tr><td>license Permit</td><td>{{ restaurant.licensePermit }}</td></tr>
-    <tr><td>Restaurant Type</td><td>{{ restaurant.restaurantType }}</td></tr>
-    <tr><td>Risk Type</td><td>{{ restaurant.riskType }}</td></tr>
-    </table>
+        <li><a href="{{inspection.get_absolute_url}}">{{ inspection }}</a></li>
+    <tr><td>Name</td><td>{{ inspection.purposeOfInspection }}</td></tr>
+    <tr><td>Address</td><td>{{ inspection.timeOut }}</td></tr>
     {% endfor %}
     </ul>
 {% else %}
     <p>No inspections for this restaurant exist!!! Come back at another time.</p>
 {% endif %}
+    <input id="origin-input" class="controls" type="text"
+           placeholder="Enter an origin location">
 
+    <input id="destination-input" class="controls" type="text"
+           placeholder="Enter a destination location">
+
+    <div id="mode-selector" class="controls">
+        <input type="radio" name="type" id="changemode-walking" checked="checked">
+        <label for="changemode-walking">Walking</label>
+
+        <input type="radio" name="type" id="changemode-transit">
+        <label for="changemode-transit">Transit</label>
+
+        <input type="radio" name="type" id="changemode-driving">
+        <label for="changemode-driving">Driving</label>
+    </div>
+
+    <div id="map"></div>
+    <div id="warnings-panel"></div>
+{#    <body onload="initialize()">#}
+{#    <div id="map" style="width: 320px; height: 480px;"></div>#}
+{#    <div>#}
+{#        <input id="address" type="textbox" value="{{ object.address }}">#}
+{#        <input type="button" value="Encode" onclick="codeAddress()">#}
+{#    </div>#}
+{#    </body>#}
+{#    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7DWja_v1YlMrwdkomOokc8YpoMY1wunA&libraries=places&callback=initMap" async defer></script>#}
+
+{#    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7DWja_v1YlMrwdkomOokc8YpoMY1wunA&libraries=places"></script>#}
 {% endblock %}

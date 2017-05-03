@@ -10,4 +10,20 @@
 </table>
 <a class="btn btn-primary" href="{{object.get_update_url}}">Edit inspection</a>
 
+    {% if inspectionObjects_list %}
+    <h1>Inspectino Results</h1>
+    <p>Inpections</p>
+    <ul>
+    {% for inspection in inspectionObjects_list %}
+        <table class="table table-inverse">
+{#        <li><a href="{{inspection.get_absolute_url}}">{{ inspection }}</a></li>#}
+    <tr><td>Status</td><td>{{ inspection.complianceStatus }}</td></tr>
+    <tr><td>itemDetailsId</td><td>{{ inspection.itemDetailsId }}</td></tr>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No inspections for this restaurant exist!!! Come back at another time.</p>
+{% endif %}
+
+
 {% endblock %}

@@ -100,6 +100,29 @@ class inspectionCreateView(CreateView):
     form_class = inspectionForm
 class inspectionDetailView(DetailView):
     model = inspection
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(inspectionDetailView, self).get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        # print(super(inspectionDetailView, self).get_context_data(**kwargs))
+        # print("object attempt next")
+        # print(self.get_object())
+        selfNOW=self.get_object()
+        # print(selfNOW.address)
+        # print(selfNOW.id)
+        # context['inspection_list'] = inspection.objects.all()//I DONT WANT ALL DELETE ME
+        insobjs=inspectionItemStatus.objects.all()
+        searchResultObj=insobjs.filter(inspectionId=selfNOW.id) #filters for inspections related to reastaurant now
+        context['inspectionObjects_list'] = searchResultObj
+        print("searchresultsis>>>>")
+        print(searchResultObj)
+        print("or")
+        print(context['inspectionObjects_list'])
+        print("CONTEXT HERE")
+        print(context)
+        return context
+
 class inspectionUpdateView(UpdateView):
     model = inspection
     form_class = inspectionForm
@@ -139,7 +162,6 @@ class restaurantListView(ListView):
     context_object_name = 'restaurants'  # Default: object_list
     paginate_by = 3
     queryset = restaurant.objects.all()  # Default: Model.objects.all()
-
 class restaurantCreateView(CreateView):
     model = restaurant
     form_class = restaurantForm
@@ -151,14 +173,14 @@ class restaurantDetailView(DetailView):
         context = super(restaurantDetailView, self).get_context_data(**kwargs)
         # Add in a QuerySet of all the books
         print(super(restaurantDetailView, self).get_context_data(**kwargs))
-        print("object attempt next")
-        print(self.get_object())
+        # print("object attempt next")
+        # print(self.get_object())
         selfNOW=self.get_object()
-        print(selfNOW.address)
-        print(selfNOW.id)
-        context['inspection_list'] = inspection.objects.all()
+        # print(selfNOW.address)
+        # print(selfNOW.id)
+        # context['inspection_list'] = inspection.objects.all()//I DONT WANT ALL DELETE ME
         insobjs=inspection.objects.all()
-        searchResultObj=insobjs.filter(restaurantId=selfNOW.id)
+        searchResultObj=insobjs.filter(restaurantId=selfNOW.id) #filters for inspections related to reastaurant now
         context['inspectionObjects_list'] = searchResultObj
         print("searchresultsis>>>>")
         print(searchResultObj)

@@ -8,20 +8,42 @@
 {#    <td>Name</td>#}
     <td>Address</td>
 {#    <td>RiskType</td>#}
-{#    <td>restaurantType</td>#}
-    <td>riskType</td>
+    <td>Restaurant Type</td>
+    <td>Risk Type</td>
 </tr>
-{% for object in object_list %}
-<tr>
-    <td><a href="{{object.get_absolute_url}}">{{object}}</a></td>
-{#    <td>{{ object.name }}</td>#}
-    <td>{{ object.address }}</td>
-    <td>{{ object.get_riskType }}</td>
-{#    <td>{{ object.restaurantType }}</td>#}
-    <td>{{ object.riskType }}</td>
-{#    <td>{{ inspection.objects.annotate(Count('inspectionItemStatus'))}}</td>//CustomField#}
-</tr>
-{% endfor %}
+    {% for object in object_list %}
+        <tr>
+            <td><a href="{{object.get_absolute_url}}">{{object}}</a></td>
+            {#    <td>{{ object.name }}</td>#}
+            <td>{{ object.address }}</td>
+            <td>{{ object.get_riskType }}</td>
+            <td>
+                {% if object.restaurantType == "B" %}
+                    Buffet
+                {% elif object.restaurantType == "F" %}
+                    Fast Food
+                {% elif object.restaurantType == "S" %}
+                    Small Shop
+                {% elif object.restaurantType == "F" %}
+                    Visit
+                {% elif object.restaurantType == "O" %}
+                    Other
+                {% endif %}
+            </td>
+            <td>
+                {% if object.riskType == "L" %}
+                    LOW
+                {% elif object.riskType == "M" %}
+                    MEDIUM
+                {% elif object.riskType == "H" %}
+                    HIGH
+                {% elif object.riskType == "F" %}
+                    Visit
+                {% endif %}
+            </td>
+            {#    <td>{{ inspection.objects.annotate(Count('inspectionItemStatus'))}}</td>//CustomField#}
+        </tr>
+    {% endfor %}
 {#</table><a class="btn btn-primary" href="{% url 'fvi_restaurant_create' %}">Create new restaurant</a>#}
 
 {% if is_paginated %}

@@ -4,20 +4,31 @@
 <p><a class="btn btn-default" href="{% url 'fvi_inspection_list' %}">inspection Listing</a></p>
 <table class="table">
 <tr>
-<td>ID</td><td>Link</td>
+{#<td>ID</td>#}
+    <td>Link</td>
 {#    <td>id</td>#}
 {#    <td>timeIn</td>#}
 {#    <td>timeOut</td>#}
-    <td>purposeOfInspection</td>
+    <td>Purpose of Inspection</td>
 </tr>
 {% for object in object_list %}
 <tr>
-    <td>{{object.pk}}</td>
+{#    <td>{{object.pk}}</td>#}
     <td><a href="{{object.get_absolute_url}}">{{object}}</a></td>
 {#    <td>{{ object.id }}</td>#}
 {#    <td>{{ object.timeIn }}</td>#}
 {#    <td>{{ object.timeOut }}</td>#}
-    <td>{{ object.purposeOfInspection }}</td>
+    <td>{% if object.purposeOfInspection == "C" %}
+    Compliance
+{% elif object.purposeOfInspection == "R" %}
+    Compliance
+{% elif object.purposeOfInspection == "V" %}
+    Field Investigation
+{% elif object.purposeOfInspection == "F" %}
+    Visit
+{% elif object.purposeOfInspection == "O" %}
+    Other
+{% endif %}</td>
 </tr>
 {% endfor %}
 </table><a class="btn btn-primary" href="{% url 'fvi_inspection_create' %}">Create new inspection</a>

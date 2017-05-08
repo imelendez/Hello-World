@@ -41,8 +41,27 @@ INSTALLED_APPS = [
     'django_extensions',
     'crispy_forms',
     'rest_framework',
+    'rest_framework_api_key',
     'fvi'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAdminUser',
+    ],
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework_api_key.permissions.HasAPIAccess',
+    # ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication', #UsingJWTTOEKEN
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'PAGE_SIZE': 10
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -72,7 +91,11 @@ TEMPLATES = [
     },
 ]
 
+
+
 WSGI_APPLICATION = 'inspectionlogger.wsgi.application'
+
+
 
 
 # Database
@@ -125,3 +148,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/fvi/'
+
+

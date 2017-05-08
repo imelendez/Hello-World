@@ -3,27 +3,49 @@
 {% block content %}
 <p><a class="btn btn-default" href="{% url 'fvi_inspection_list' %}">inspection Listing</a></p>
 <table class="table">
-<tr><td>id</td><td>{{ object.id }}</td></tr>
-<tr><td>timeIn</td><td>{{ object.timeIn }}</td></tr>
-<tr><td>timeOut</td><td>{{ object.timeOut }}</td></tr>
-<tr><td>purposeOfInspection</td><td>{{ object.purposeOfInspection }}</td></tr>
+<tr><td>Time In</td><td>{{ object.timeIn }}</td></tr>
+<tr><td>Time Out</td><td>{{ object.timeOut }}</td></tr>
+<tr><td>Purpose Of Inspection</td><td>{% if object.purposeOfInspection == "C" %}
+    Compliance
+{% elif object.purposeOfInspection == "R" %}
+    Compliance
+{% elif object.purposeOfInspection == "V" %}
+    Field Investigation
+{% elif object.purposeOfInspection == "F" %}
+    Visit
+{% elif object.purposeOfInspection == "O" %}
+    Other
+{% endif %} </td></tr>
+{#<b>Score is {{ totalScore }}</b>#}
 </table>
 <a class="btn btn-primary" href="{{object.get_update_url}}">Edit inspection</a>
 
     {% if inspectionObjects_list %}
-    <h1>Inspectino Results</h1>
-    <p>Inpections</p>
+    <h1>Inspection Results</h1>
+    <p>Inspection Items</p>
     <ul>
     {% for inspection in inspectionObjects_list %}
         <table class="table table-inverse">
 {#        <li><a href="{{inspection.get_absolute_url}}">{{ inspection }}</a></li>#}
-    <tr><td>Status</td><td>{{ inspection.complianceStatus }}</td></tr>
+    <tr><td>Status</td><td>{% if inspection.complianceStatus == 0 %}
+    Not In Compliance
+{% elif inspection.complianceStatus == 1 %}
+    In Compliance
+{% elif inspection.complianceStatus == 2 %}
+    Not Observed
+{% elif inspection.complianceStatus == 3 %}
+    Not Applicable
+{% elif inspection.complianceStatus == 5 %}
+    Correncted On Site
+{% endif %}
+    </td></tr>
     <tr><td>itemDetailsId</td><td>{{ inspection.itemDetailsId }}</td></tr>
     {% endfor %}
     </ul>
 {% else %}
     <p>No inspections for this restaurant exist!!! Come back at another time.</p>
 {% endif %}
+<br>
 
 
 {% endblock %}

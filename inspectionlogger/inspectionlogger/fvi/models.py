@@ -50,6 +50,11 @@ class inspection(models.Model):
     def get_update_url(self):
         return reverse('fvi_inspection_update', args=(self.pk,))
 
+    class Meta:
+        permissions=(("create_inspection","can create inspetions"),
+                     ("view_inspection","can view inspections"),
+                     ("update_inspection","cann update inspections"))
+
 
 class inspectionItemStatus(models.Model):
     OUT=0

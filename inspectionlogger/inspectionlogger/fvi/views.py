@@ -12,6 +12,12 @@ from django.db.models import F, FloatField, Sum
 from django.utils import timezone
 from django.http import HttpResponseRedirect
 import operator
+from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
 
 def results(request):
     if request.method == 'GET':
@@ -67,16 +73,6 @@ def index(request):
     context = {
         'current_restaurant_list': current_restaurant_list,
     }
-    # if request.method == 'GET':
-    #     if 'searchQuery' in request.GET:
-    #         message = 'You submitted: %r' % request.GET['']
-    #     else:
-    #         message = 'You submitted nothing!'
-    #
-    #     return HttpResponse(message)
-    # # if a GET (or any other method) we'll create a blank form
-    # else:
-    #     print("hello")
     mySearchForm = searchForm()
     return render(request, 'fvi/index.html', {'form': mySearchForm})
     # return HttpResponse(template.render(context, request))
@@ -96,6 +92,7 @@ def signup(request):
 class inspectionListView(ListView):
     model = inspection
 class inspectionCreateView(CreateView):
+    permission_required = 'catalog.Can_Create_Inspection'
     model = inspection
     form_class = inspectionForm
 class inspectionDetailView(DetailView):
@@ -104,16 +101,12 @@ class inspectionDetailView(DetailView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(inspectionDetailView, self).get_context_data(**kwargs)
-        # Add in a QuerySet of all the books
-        # print(super(inspectionDetailView, self).get_context_data(**kwargs))
-        # print("object attempt next")
-        # print(self.get_object())
         selfNOW=self.get_object()
-        # print(selfNOW.address)
-        # print(selfNOW.id)
-        # context['inspection_list'] = inspection.objects.all()//I DONT WANT ALL DELETE ME
         insobjs=inspectionItemStatus.objects.all()
         searchResultObj=insobjs.filter(inspectionId=selfNOW.id) #filters for inspections related to reastaurant now
+        blue=insobjs.filter(inspectionId=selfNOW.id).aggregate(Sum(F('complianceStatus'), output_field=FloatField()))
+        print(blue)
+        context['totalScore'] = blue
         context['inspectionObjects_list'] = searchResultObj
         print("searchresultsis>>>>")
         print(searchResultObj)
@@ -124,6 +117,7 @@ class inspectionDetailView(DetailView):
         return context
 
 class inspectionUpdateView(UpdateView):
+    permission_required = 'catalog.Can_Update_Inspection'
     model = inspection
     form_class = inspectionForm
 class inspectionItemStatusListView(ListView):
@@ -163,6 +157,7 @@ class restaurantListView(ListView):
     paginate_by = 3
     queryset = restaurant.objects.all()  # Default: Model.objects.all()
 class restaurantCreateView(CreateView):
+    permission_required = 'catalog.Can_Create_Restaurant'
     model = restaurant
     form_class = restaurantForm
 class restaurantDetailView(DetailView):
@@ -190,15 +185,7 @@ class restaurantDetailView(DetailView):
         print(context)
         return context
 
-# class PublisherBookList(ListView):
-#     template_name = 'fvi/restaurant_inspections_list.html'
-#     print("selfargs")
-
-    # def get_queryset(self):
-    #     self.Restaurant = get_object_or_404(restaurant, id=self.args[0]
-    #     print(self.args[0]))
-    #     return restaurant.objects.filter(Restaurant=self.Restaurant)
-
 class restaurantUpdateView(UpdateView):
+    permission_required = 'user.is_staff'
     model = restaurant
     form_class = restaurantForm

@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f710811-f305-4b7f-ac9d-7a494674f212" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inspectionlogger/db.sqlite3" afterPath="$PROJECT_DIR$/inspectionlogger/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inspectionlogger/fvi/models.py" afterPath="$PROJECT_DIR$/inspectionlogger/fvi/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inspectionlogger/fvi/templates/base.html" afterPath="$PROJECT_DIR$/inspectionlogger/fvi/templates/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inspectionlogger/fvi/templates/fvi/index.html" afterPath="$PROJECT_DIR$/inspectionlogger/fvi/templates/fvi/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inspectionlogger/fvi/templates/fvi/inspection_detail.html" afterPath="$PROJECT_DIR$/inspectionlogger/fvi/templates/fvi/inspection_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inspectionlogger/fvi/templates/fvi/inspection_list.html" afterPath="$PROJECT_DIR$/inspectionlogger/fvi/templates/fvi/inspection_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inspectionlogger/fvi/templates/fvi/restaurant_detail.html" afterPath="$PROJECT_DIR$/inspectionlogger/fvi/templates/fvi/restaurant_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inspectionlogger/fvi/templates/fvi/restaurant_list.html" afterPath="$PROJECT_DIR$/inspectionlogger/fvi/templates/fvi/restaurant_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inspectionlogger/fvi/urls.py" afterPath="$PROJECT_DIR$/inspectionlogger/fvi/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inspectionlogger/fvi/views.py" afterPath="$PROJECT_DIR$/inspectionlogger/fvi/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inspectionlogger/inspectionlogger/settings.py" afterPath="$PROJECT_DIR$/inspectionlogger/inspectionlogger/settings.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -454,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1493805537373</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="final">
+      <created>1494263842421</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1494263842422</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">
@@ -516,7 +512,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="added gitignore" />
+    <MESSAGE value="final" />
+    <option name="LAST_COMMIT_MESSAGE" value="final" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -747,6 +744,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-351">
           <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -754,6 +752,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -804,6 +803,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="727">
           <caret line="27" column="25" lean-forward="true" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
